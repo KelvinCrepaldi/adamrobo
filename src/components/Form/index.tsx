@@ -1,17 +1,15 @@
-import {
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  Stack
-} from '@chakra-ui/react';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, Stack } from '@chakra-ui/react';
 import InputMask from 'react-input-mask';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormValues, createAccountSchema } from './createAccoutSchema';
+import { createAccountSchema } from './createAccoutSchema';
+import { FormValues } from '../../types/form';
+import { AccountContext, AccountContextType } from '../../context/AccountContext';
+import { useContext } from 'react';
 
-const Form = ({setAccount}: {setAccount: any}) => {
+const Form = () => {
+  const { setAccount } = useContext(AccountContext) as AccountContextType;
+
   const {
     register,
     handleSubmit,
@@ -19,7 +17,7 @@ const Form = ({setAccount}: {setAccount: any}) => {
   } = useForm<FormValues>({ resolver: zodResolver(createAccountSchema) });
 
   const onSubmit: SubmitHandler<FormValues> = (e) => {
-    setAccount(e)
+    setAccount(e);
   };
 
   return (
@@ -37,7 +35,7 @@ const Form = ({setAccount}: {setAccount: any}) => {
             type="text"
             as={InputMask}
             mask="(99) 99999-9999"
-            placeholder='telefone'
+            placeholder="telefone"
             {...register('telephone')}
           />
           <FormErrorMessage>{errors.telephone?.message}</FormErrorMessage>
