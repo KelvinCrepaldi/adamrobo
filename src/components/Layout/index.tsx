@@ -1,5 +1,6 @@
 import { Box, ChakraProvider, Container, Flex, Image, theme } from '@chakra-ui/react';
 import Navbar from '../Navbar';
+import Modals from '../Modals';
 
 const Layout = ({ children }: { children: any }) => {
   return (
@@ -17,6 +18,7 @@ const Layout = ({ children }: { children: any }) => {
           </Container>
         </Flex>
       </Box>
+      <Modals />
     </ChakraProvider>
   );
 };
