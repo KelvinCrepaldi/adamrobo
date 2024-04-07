@@ -1,18 +1,16 @@
 import { Box, Flex } from '@chakra-ui/react';
 import Form from '../../components/Form';
-import { useState } from 'react';
-import { FormValues } from '../../components/Form/createAccoutSchema';
+import { useContext } from 'react';
+import ConfirmAccount from '../../components/ConfirmAccount';
+import { AccountContext, AccountContextType } from '../../context/AccountContext';
 
 const HomePage = () => {
-
-  const [account, setAccount] = useState<null | FormValues>(null);
+  const { account } = useContext(AccountContext) as AccountContextType;
 
   return (
     <Box>
       <Flex justify="center" align="center">
-        <Form setAccount={setAccount}></Form>
-
-        {account && <div>possui uma conta</div>}
+        {!account ? <Form /> : <ConfirmAccount />}
       </Flex>
     </Box>
   );
