@@ -8,14 +8,14 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay,
+  ModalOverlay
 } from '@chakra-ui/react';
 import { AccountContext, AccountContextType } from '../../context/AccountContext';
 import { useTranslation } from 'react-i18next';
 
 const Modals = () => {
-    const { t } = useTranslation();
-    const { seconds } = useContext(AccountContext) as AccountContextType;
+  const { t } = useTranslation();
+  const { seconds } = useContext(AccountContext) as AccountContextType;
 
   const { failureModal, successModal, closeFailureModal, closeSuccessModal } = useContext(
     ModalContext
@@ -23,21 +23,19 @@ const Modals = () => {
 
   return (
     <>
-        <Modal isOpen={successModal} onClose={closeSuccessModal}>
-            <ModalOverlay />
-            <ModalContent>
-            <ModalHeader>{t('accountCreationSuccess')}</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>{t('challengeCompleted', {seconds: seconds})}</ModalBody>
-            <ModalFooter>
-                <Button colorScheme="red" mr={3} onClick={closeSuccessModal}>
-                Ok
-                </Button>
-            </ModalFooter>
-            </ModalContent>
-        </Modal>
-    
-      
+      <Modal isOpen={successModal} onClose={closeSuccessModal}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{t('accountCreationSuccess')}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>{t('challengeCompleted', { seconds: seconds })}</ModalBody>
+          <ModalFooter>
+            <Button colorScheme="red" mr={3} onClick={closeSuccessModal}>
+              Ok
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
       <Modal isOpen={failureModal} onClose={closeFailureModal}>
         <ModalOverlay />

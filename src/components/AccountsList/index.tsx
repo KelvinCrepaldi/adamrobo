@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Table, Thead, Tbody, Tr, Th, TableCaption, TableContainer } from '@chakra-ui/react';
 
 const AccountsList = () => {
- const {t} = useTranslation();
+  const { t } = useTranslation();
   const { accountsList, deleteAccount } = useContext(AccountContext) as AccountContextType;
 
   const handleDelete = (id: string) => {

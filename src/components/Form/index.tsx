@@ -39,7 +39,6 @@ const Form = () => {
           <FormLabel>{t('name')}:</FormLabel>
           <Input type="text" placeholder={t('name')} {...register('name')} />
           {errors.name?.message && <FormErrorMessage>{t(errors.name.message)}</FormErrorMessage>}
-          
         </FormControl>
 
         <FormControl id="telephone" isInvalid={!!errors.telephone}>
@@ -51,7 +50,9 @@ const Form = () => {
             placeholder={t('telephone')}
             {...register('telephone')}
           />
-          {errors.telephone?.message && <FormErrorMessage>{t(errors.telephone.message)}</FormErrorMessage>}
+          {errors.telephone?.message && (
+            <FormErrorMessage>{t(errors.telephone.message)}</FormErrorMessage>
+          )}
         </FormControl>
 
         <FormControl id="email" isInvalid={!!errors.email}>
@@ -61,7 +62,7 @@ const Form = () => {
         </FormControl>
 
         <Button type="submit" colorScheme="red" variant="solid" isLoading={isSubmitting}>
-        {t('buttonCreateAccount')}
+          {t('buttonCreateAccount')}
         </Button>
       </Stack>
     </Box>

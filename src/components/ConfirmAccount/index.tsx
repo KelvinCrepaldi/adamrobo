@@ -41,9 +41,7 @@ const ConfirmAccount = () => {
   return (
     <Container>
       <Flex align="center" justify="center" direction="column" gap={6}>
-        <Text>
-          {t('confirmAccountCreation', {seconds: seconds})}
-        </Text>
+        <Text>{t('confirmAccountCreation', { seconds: seconds })}</Text>
         <Progress colorScheme="red" value={(100 / 15) * seconds} w="100%" size="lg" />
 
         <Button variant="outline" colorScheme="red" onClick={handleConfirm}>
