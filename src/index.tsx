@@ -5,6 +5,7 @@ import Router from './router';
 import Layout from './components/Layout';
 import { ModalProvider } from './context/ModalContext';
 import { AccountProvider } from './context/AccountContext';
+import './i18n';
 
 const container = document.getElementById('root');
 if (!container) throw new Error('Failed to find the root element');

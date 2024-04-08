@@ -3,10 +3,12 @@ import { AccountContext, AccountContextType } from '../../context/AccountContext
 import { IAccount } from '../../types/database';
 import { Button } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
+import { useTranslation } from 'react-i18next';
 
 import { Table, Thead, Tbody, Tr, Th, TableCaption, TableContainer } from '@chakra-ui/react';
 
 const AccountsList = () => {
+ const {t} = useTranslation();
   const { accountsList, deleteAccount } = useContext(AccountContext) as AccountContextType;
 
   const handleDelete = (id: string) => {
@@ -15,12 +17,12 @@ const AccountsList = () => {
   return (
     <TableContainer>
       <Table variant="simple">
-        <TableCaption>lista de contas criadas anteriormente</TableCaption>
+        <TableCaption>{t('previousCreatedAccounts')}</TableCaption>
         <Thead>
           <Tr>
-            <Th>Nome</Th>
-            <Th>Email</Th>
-            <Th>Telefone</Th>
+            <Th>{t('name')}</Th>
+            <Th>{t('email')}</Th>
+            <Th>{t('telephone')}</Th>
             <Th></Th>
           </Tr>
         </Thead>
