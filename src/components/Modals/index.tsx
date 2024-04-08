@@ -10,8 +10,11 @@ import {
   ModalHeader,
   ModalOverlay
 } from '@chakra-ui/react';
+import { AccountContext, AccountContextType } from '../../context/AccountContext';
 
 const Modals = () => {
+  const { seconds } = useContext(AccountContext) as AccountContextType;
+
   const { failureModal, successModal, closeFailureModal, closeSuccessModal } = useContext(
     ModalContext
   ) as ModalContextType;
@@ -21,10 +24,9 @@ const Modals = () => {
       <Modal isOpen={successModal} onClose={closeSuccessModal}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Criação de conta:</ModalHeader>
+          <ModalHeader>Sucesso na criação de conta:</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>Você criou uma conta com sucesso!</ModalBody>
-
+          <ModalBody>Desafio terminado em {seconds} segundos</ModalBody>
           <ModalFooter>
             <Button colorScheme="red" mr={3} onClick={closeSuccessModal}>
               Ok
@@ -38,7 +40,7 @@ const Modals = () => {
         <ModalContent>
           <ModalHeader>Falha na criação de conta:</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>Você não conseguiu criar uma conta dentro de 15 segundos!</ModalBody>
+          <ModalBody>Desafio não finalizado</ModalBody>
 
           <ModalFooter>
             <Button colorScheme="red" mr={3} onClick={closeFailureModal}>

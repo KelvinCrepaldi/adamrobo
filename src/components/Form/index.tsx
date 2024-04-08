@@ -1,4 +1,12 @@
-import { Button, FormControl, FormErrorMessage, FormLabel, Input, Stack } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Stack
+} from '@chakra-ui/react';
 import InputMask from 'react-input-mask';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -21,7 +29,7 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Box as="form" onSubmit={handleSubmit(onSubmit)} maxW={'400px'} w="100%">
       <Stack spacing={5}>
         <FormLabel>Criar uma nova conta:</FormLabel>
 
@@ -50,7 +58,7 @@ const Form = () => {
           Criar conta
         </Button>
       </Stack>
-    </form>
+    </Box>
   );
 };
 

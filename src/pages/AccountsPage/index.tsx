@@ -14,10 +14,10 @@ const AccountsPage = () => {
 
   useEffect(() => {
     if (accountsList && accountsList?.length <= 0) {
-      navigate("/");
+      navigate('/');
     }
   }, [accountsList]);
-  
+
   return (
     <Box>
       <AccountsList />
