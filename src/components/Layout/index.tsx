@@ -7,7 +7,7 @@ const Layout = ({ children }: { children: any }) => {
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
         <Flex minH="100vh" direction={'column'}>
-          <Box shadow="base" p={5} >
+          <Box shadow="base" p={5}>
             <Flex justify={'space-between'} align={'center'}>
               <Image src="assets/logo.svg" w={'150px'}></Image>
               <Navbar />
