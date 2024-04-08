@@ -2,8 +2,9 @@ import { Button, Container, Flex, Progress, Text } from '@chakra-ui/react';
 import { useContext, useEffect } from 'react';
 import { ModalContext, ModalContextType } from '../../context/ModalContext';
 import { AccountContext, AccountContextType } from '../../context/AccountContext';
-
+import { useTranslation } from 'react-i18next';
 const ConfirmAccount = () => {
+  const { t } = useTranslation();
   const { failureModal, successModal, openFailureModal, openSuccessModal } = useContext(
     ModalContext
   ) as ModalContextType;
@@ -41,12 +42,12 @@ const ConfirmAccount = () => {
     <Container>
       <Flex align="center" justify="center" direction="column" gap={6}>
         <Text>
-          Você tem <span color="red">{seconds}</span> segundos para confirmar a criação da conta.
+          {t('confirmAccountCreation', {seconds: seconds})}
         </Text>
         <Progress colorScheme="red" value={(100 / 15) * seconds} w="100%" size="lg" />
 
         <Button variant="outline" colorScheme="red" onClick={handleConfirm}>
-          Confirmar
+          {t('confirm')}
         </Button>
       </Flex>
     </Container>

@@ -3,6 +3,8 @@ import { Box, Button, Flex, HStack, IconButton, Stack, useColorModeValue, useDis
 import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { AccountContext, AccountContextType } from '../../context/AccountContext';
+import ChangeLang from '../ChangeLang';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   children: React.ReactNode;
@@ -23,18 +25,20 @@ const NavLink = ({ pathName, children, disabled = false }: Props) => {
 const Navbar = () => {
   const { disableAccountPage } = React.useContext(AccountContext) as AccountContextType;
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { t } = useTranslation();
 
   return (
     <>
       <Box pb={4} ps="relative">
         <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
           <NavLink key={'Criar conta'} pathName={'/'}>
-            Criar conta
+            {t('createaccount')}
           </NavLink>
           <NavLink key={'Contas'} pathName={'/accounts'} disabled={disableAccountPage}>
-            Contas
+            {t('accounts')}
           </NavLink>
           <ColorModeSwitcher />
+          <ChangeLang/>
         </HStack>
         {!isOpen && (
           <IconButton
@@ -63,6 +67,7 @@ const Navbar = () => {
         >
           <Flex justify={'space-between'} pb={4}>
             <ColorModeSwitcher />
+            <ChangeLang/>
             {isOpen && (
               <IconButton
                 size={'md'}
@@ -75,10 +80,10 @@ const Navbar = () => {
           </Flex>
           <Stack as={'nav'} spacing={4}>
           <NavLink key={'Criar conta'} pathName={'/'}>
-            Criar conta
+          {t('createaccount')}
           </NavLink>
           <NavLink key={'Contas'} pathName={'/accounts'} disabled={disableAccountPage}>
-            Contas
+          {t('accounts')}
           </NavLink>
           </Stack>
         </Box>
