@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Button, Flex, HStack, IconButton, Stack, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Flex, HStack, IconButton, Stack, useColorModeValue, useDisclosure } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { AccountContext, AccountContextType } from '../../context/AccountContext';
@@ -9,11 +9,6 @@ interface Props {
   pathName: string;
   disabled?: boolean;
 }
-
-const Links = [
-  { name: 'Página inicial', path: '/' },
-  { name: 'Contas', path: '/accounts' }
-];
 
 const NavLink = ({ pathName, children, disabled = false }: Props) => {
   return (
@@ -54,13 +49,17 @@ const Navbar = () => {
       {isOpen ? (
         <Box
           h={'100vh'}
+          maxW={'250px'}
+          w="full"
           pb={4}
           pos="absolute"
           display={{ md: 'none' }}
           top={0}
           right={0}
           p={4}
-          shadow={'md'}
+          shadow={'base'}
+          zIndex={10}
+          bg={useColorModeValue("white", "gray.800")}
         >
           <Flex justify={'space-between'} pb={4}>
             <ColorModeSwitcher />
@@ -75,11 +74,12 @@ const Navbar = () => {
             )}
           </Flex>
           <Stack as={'nav'} spacing={4}>
-            {Links.map((link) => (
-              <NavLink key={link.name} pathName={link.path}>
-                {link.name}
-              </NavLink>
-            ))}
+          <NavLink key={'Criar conta'} pathName={'/'}>
+            Criar conta
+          </NavLink>
+          <NavLink key={'Contas'} pathName={'/accounts'} disabled={disableAccountPage}>
+            Contas
+          </NavLink>
           </Stack>
         </Box>
       ) : null}
