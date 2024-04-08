@@ -11,6 +11,8 @@ export type AccountContextType = {
   deleteAccount: (id: string) => Promise<void>; // eslint-disable-line no-unused-vars
   getAccountsList: () => Promise<void>;
   disableAccountPage: boolean;
+  seconds: number;
+  setSeconds: Dispatch<SetStateAction<number>>;
 };
 
 export const AccountContext = createContext<AccountContextType | null>(null);
@@ -19,6 +21,7 @@ export const AccountProvider = ({ children }: { children: ReactNode }) => {
   const [account, setAccount] = useState<null | FormValues>(null);
   const [accountsList, setAccountsList] = useState<null | FormValues[]>(null);
   const [disableAccountPage, setDisableAccountPage] = useState<boolean>(false);
+  const [seconds, setSeconds] = useState<number>(15);
 
   const createAccount = async () => {
     if (account) await db.account.add(account);
@@ -27,10 +30,10 @@ export const AccountProvider = ({ children }: { children: ReactNode }) => {
   const getAccountsList = async () => {
     const data: FormValues[] = await db.account.toArray();
     setAccountsList(data);
-    if(data.length <= 0){
-      setDisableAccountPage(true)
-    } else{
-      setDisableAccountPage(false)
+    if (data.length <= 0) {
+      setDisableAccountPage(true);
+    } else {
+      setDisableAccountPage(false);
     }
   };
 
@@ -52,7 +55,9 @@ export const AccountProvider = ({ children }: { children: ReactNode }) => {
         createAccount,
         deleteAccount,
         getAccountsList,
-        disableAccountPage
+        disableAccountPage,
+        seconds,
+        setSeconds
       }}
     >
       {children}

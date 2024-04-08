@@ -15,7 +15,9 @@ export type ModalContextType = {
 export const ModalContext = createContext<ModalContextType | null>(null);
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
-  const { setAccount, getAccountsList } = useContext(AccountContext) as AccountContextType;
+  const { setAccount, getAccountsList, setSeconds } = useContext(
+    AccountContext
+  ) as AccountContextType;
   const [successModal, setSucessModal] = useState<boolean>(false);
   const [failureModal, setFailureModal] = useState<boolean>(false);
 
@@ -27,11 +29,13 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const closeSuccessModal = () => {
     setSucessModal(false);
     getAccountsList();
+    setSeconds(15);
   };
 
   const openFailureModal = () => {
     setFailureModal(true);
     setAccount(null);
+    setSeconds(15);
   };
 
   const closeFailureModal = () => {
