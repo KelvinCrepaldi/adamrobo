@@ -4,9 +4,10 @@ rode os seguintes comandos
 
 - `pnpm install` para instalar as dependencias do projeto.
 - `pnpm start` para iniciar uma build de desenvolvimento.
-- `pnpm run build` para criar uma build de produção. 
+- `pnpm run build` para criar uma build de produção.
 
 # Desafio Frontend Adam Robo
+
 Criar um site com um formulário de criação de conta (Nome,
 Telefone e Email) e um botão para criar a conta. Após clicar
 nesse botão, o site deve exibir um contador regressivo de 15
@@ -17,15 +18,15 @@ timer zerar sem ser clicado em submit, o site deve exibir um
 modal escrito “Desafio não finalizado”.
 
 - O site deve ter outra rota, onde estarão as informações do
-usuário que foi criado (Nome, Telefone e Email);
+  usuário que foi criado (Nome, Telefone e Email);
 - O site deve ter uma barra de navegação para trocar de
-rotas;
+  rotas;
 - O site deve permitir retornar para a última rota acessada;
 - O timer não pode zerar ao trocar de rota e retornar a rota;
 - O formulário não pode permitir informações em branco;
 - O formulário deve possuir máscara de telefone;
 - O site não deve permitir acessar a rota dos dados do
-usuário se não houver um usuário criado;
+  usuário se não houver um usuário criado;
 - A barra de navegação deve ter a seguinte [logo](https://drive.google.com/file/d/1EXobSHIrBs7aDhLlubEqHfVWVD3jZxbN/view);
 
 ## Dependências obrigatórias:

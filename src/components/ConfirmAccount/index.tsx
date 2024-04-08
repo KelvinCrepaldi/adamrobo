@@ -1,26 +1,30 @@
-import { Button, Container } from '@chakra-ui/react';
-import { useContext, useEffect, useState } from 'react';
+import { Button, Container, Flex, Progress, Text } from '@chakra-ui/react';
+import { useContext, useEffect } from 'react';
 import { ModalContext, ModalContextType } from '../../context/ModalContext';
 import { AccountContext, AccountContextType } from '../../context/AccountContext';
-
+import { useTranslation } from 'react-i18next';
 const ConfirmAccount = () => {
-  const { openFailureModal, openSuccessModal } = useContext(ModalContext) as ModalContextType;
-  const { createAccount } = useContext(AccountContext) as AccountContextType;
-  const [seconds, setSeconds] = useState<number>(15);
+  const { t } = useTranslation();
+  const { failureModal, successModal, openFailureModal, openSuccessModal } = useContext(
+    ModalContext
+  ) as ModalContextType;
+  const { createAccount, seconds, setSeconds } = useContext(AccountContext) as AccountContextType;
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setSeconds((prevSeconds) => {
-        if (prevSeconds === 0) {
-          clearInterval(intervalId);
-          return 0;
-        } else {
-          return prevSeconds - 1;
-        }
-      });
-    }, 1000);
+    if (!failureModal === !successModal) {
+      const intervalId = setInterval(() => {
+        setSeconds((prevSeconds) => {
+          if (prevSeconds === 0) {
+            clearInterval(intervalId);
+            return 0;
+          } else {
+            return prevSeconds - 1;
+          }
+        });
+      }, 1000);
 
-    return () => clearInterval(intervalId);
+      return () => clearInterval(intervalId);
+    }
   }, []);
 
   useEffect(() => {
@@ -35,12 +39,16 @@ const ConfirmAccount = () => {
   };
 
   return (
-    <>
-      <Container>
-        Você tem {seconds} segundos para confirmar a criação da conta.
-        <Button onClick={handleConfirm}>Confirmar</Button>
-      </Container>
-    </>
+    <Container>
+      <Flex align="center" justify="center" direction="column" gap={6}>
+        <Text>{t('confirmAccountCreation', { seconds: seconds })}</Text>
+        <Progress colorScheme="red" value={(100 / 15) * seconds} w="100%" size="lg" />
+
+        <Button variant="outline" colorScheme="red" onClick={handleConfirm}>
+          {t('confirm')}
+        </Button>
+      </Flex>
+    </Container>
   );
 };
 
